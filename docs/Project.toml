@@ -1,0 +1,8 @@
+name = "docs"
+uuid = "1489f54c-b314-4cae-b042-0e9e6200fa30"
+authors = ["Ben Zinberg <bzinberg@alum.mit.edu>"]
+version = "0.1.0"
+
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+PoseComposition = "0a8ab332-79e8-43e0-a313-949ce1168071"
