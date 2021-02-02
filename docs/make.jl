@@ -12,3 +12,7 @@ makedocs(
     pages = pages_in_order,
     expandfirst = pages_in_order,
 )
+
+deploydocs(
+    repo = "github.com/probcomp/PoseComposition.jl.git",
+)
