@@ -86,7 +86,7 @@ approximated as inertial:
 # Translational and rotational velocity of the ball relative to the batter
 v = Pose([0, -115, -0.2], RotZYX(0, 0, 10))
 # Pose of the ball relative to the batter as a function of time
-p1_2(t) = p2 * interp(v, t)
+p1_2(t) = p2 ⊗ interp(v, t)
 ```
 
 ### Point cloud example
