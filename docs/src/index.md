@@ -84,7 +84,7 @@ fastball and there is negligible wind, then the ball's pose at time `t` can be
 approximated as inertial:
 ```julia
 # Translational and rotational velocity of the ball relative to the batter
-v = Pose([0, -115, -0.2])
+v = Pose([0, -115, -0.2], RotZYX(0, 0, 10))
 # Pose of the ball relative to the batter as a function of time
 p1_2(t) = p2 * interp(v, t)
 ```
