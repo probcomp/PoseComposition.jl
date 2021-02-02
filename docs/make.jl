@@ -15,4 +15,5 @@ makedocs(
 
 deploydocs(
     repo = "github.com/probcomp/PoseComposition.jl.git",
+    devbranch = "main",
 )
