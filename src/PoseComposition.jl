@@ -6,11 +6,7 @@ import StaticArrays: StaticVector, SVector, @SVector
 
 include("docstring_extensions.jl")
 
-@doc """Fields:
-$(TYPEDFIELDS)$(raw"""
-
----
-
+"""
 Struct representing the pose (position and orientation) of an object.
 
 Can represent either a relative pose (relative to some parent coordinate frame
@@ -19,7 +15,7 @@ by definition, a pose relative to the world coordinate frame.
 
 See [Operations on Poses](@ref) for documentation of this data structure and
 the operations defined on it.
-""")""" Pose
+"""
 @kwdef struct Pose
   """Origin of the object's coordinate frame."""
   pos::StaticVector{3, <:Real}
