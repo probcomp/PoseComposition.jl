@@ -3,6 +3,7 @@ import PoseComposition
 
 pages_in_order = [
     "index.md",
+    "operations.md",
     "further_api_reference.md",
 ]
 
