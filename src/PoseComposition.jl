@@ -1,6 +1,7 @@
 module PoseComposition
 
 import Base: @kwdef
+import LinearAlgebra: dot, norm, cross
 import Rotations: Rotation, UnitQuaternion, RotZYX
 import StaticArrays: StaticVector, SVector, @SVector
 
