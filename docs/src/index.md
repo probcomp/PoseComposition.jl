@@ -46,10 +46,8 @@ places particular emphasis on:
 * **Simple equations, ergonomic code.**  Because change of coordinate frame is
   the basic algebraic operation, large equations involving many coordinate
   frames can be solved via simple algebra to express the relative pose between
-  any two frames as a function of the others.  For example, in "[Pose Algebra
-  In
-  Action](https://web.mit.edu/bzinberg/www/GenSceneGraphs-docs/dev/poses/#Example:-Pose-Algebra-In-Action),"
-  we solve the equation
+  any two frames as a function of the others.  For example, in "Pose Algebra In
+  Action[^1]," we solve the equation
   ```
   pose1 * getContactPlane(getShape(g, :obj1), :top)
         * planarContactTo6DOF(pc)
@@ -65,6 +63,9 @@ places particular emphasis on:
   would require a much larger expression with nested operations and
   harder-to-understand code.
 
+[^1]:
+    The "Pose Algebra in Action" doc is temporarily unavailable; please check
+    back soon!
 
 ## Quick Start
 
