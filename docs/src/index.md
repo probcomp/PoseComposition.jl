@@ -6,7 +6,7 @@ CurrentModule = PoseComposition
 
 ---
 
-![Illustration of Pose geometry](imgs/intro_illustration.svg)
+[![Illustration of Pose geometry](imgs/intro_illustration.svg)](imgs/intro_illustration.svg)
 
 
 PoseComposition.jl is a library for representing and manipulating poses.  It
