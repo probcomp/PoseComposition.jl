@@ -62,9 +62,10 @@ are `pose.orientation * [1, 0, 0]`, `pose.orientation * [0, 1, 0]` and
 
 ##### Example: Which order do I multiply things in?
 
-Say we want to start with pose `p1` and translate its origin by `p2` and
-matrix-multiply its orientation by `p2`.  Would that new pose be written as
-`p1 * p2` or `p2 * p1`?
+Suppose we start with coordinate frame `p1`, and we want to translate its
+origin by `p2.pos` and then rotate its coordinate axes via the linear map
+`v ↦ p2.orientation * v`.  Would the pose corresponding to the new coordinate
+frame be written as `p1 * p2` or `p2 * p1`?
 
 Answer: `p1 * p2`.
 
@@ -74,10 +75,9 @@ There are two ways to think about poses:
 
 1. A pose is a coordinate frame, described with respect to some other base
    coordinate frame.  The `pos` says where the frame's origin is, and the
-   `orientation` says what directions its right-handed orthonormal axes point
-   in.
+   `orientation` says what directions its orthonormal axes point in.
 2. A pose is a rigid motion.  The translational component is `pos` and the
-   orientation component is `orientation`.
+   orientation component is the linear map `v ↦ orientation * v`.
 
 When we talk about the [group
 action](https://en.wikipedia.org/wiki/Group_action_(mathematics)) of ``G`` on
