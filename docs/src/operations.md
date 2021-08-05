@@ -77,7 +77,7 @@ There are two ways to think about poses:
    coordinate frame.  The `pos` says where the frame's origin is, and the
    `orientation` says what directions its orthonormal axes point in.
 2. A pose is a rigid motion.  The translational component is `pos` and the
-   orientation component is `orientation`.
+   orientation component is the linear map `v ↦ orientation * v`.
 
 When we talk about the [group
 action](https://en.wikipedia.org/wiki/Group_action_(mathematics)) of ``G`` on
