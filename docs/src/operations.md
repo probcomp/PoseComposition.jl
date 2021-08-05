@@ -62,9 +62,10 @@ are `pose.orientation * [1, 0, 0]`, `pose.orientation * [0, 1, 0]` and
 
 ##### Example: Which order do I multiply things in?
 
-Say we want to start with pose `p1` and translate its origin by `p2` and
-matrix-multiply its orientation by `p2`.  Would that new pose be written as
-`p1 * p2` or `p2 * p1`?
+Suppose we start with coordinate frame `p1`, and we want to translate its
+origin by `p2.pos` and then rotate its coordinate axes via the linear map
+`v ↦ p2.orientation * v`.  Would the pose corresponding to the new coordinate
+frame be written as `p1 * p2` or `p2 * p1`?
 
 Answer: `p1 * p2`.
 
