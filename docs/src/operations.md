@@ -75,8 +75,7 @@ There are two ways to think about poses:
 
 1. A pose is a coordinate frame, described with respect to some other base
    coordinate frame.  The `pos` says where the frame's origin is, and the
-   `orientation` says what directions its right-handed orthonormal axes point
-   in.
+   `orientation` says what directions its orthonormal axes point in.
 2. A pose is a rigid motion.  The translational component is `pos` and the
    orientation component is `orientation`.
 
