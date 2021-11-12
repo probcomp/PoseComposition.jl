@@ -294,14 +294,8 @@ interp(a::Pose, b::Pose, t::Real) = a * interp(a ⦸ b, t)
 
 function quatPow(q::UnitQuaternion, t::Real)
   # TODO: Once https://github.com/JuliaGeometry/Rotations.jl/issues/126 is
-  # fixed, this special case won't be necessary.
-  #
-  # For an example showing why we need an approximately-equal check rather than an exact equality check, see
-  # https://github.com/probcomp/PoseComposition.jl/issues/5
-  ε = 1e-30
-  if (isapprox(t, 0; atol=ε)
-      || isapprox(q, one(UnitQuaternion); atol=ε)
-      || isapprox(q, -one(UnitQuaternion); atol=ε))
+  # fixed, this special case won't be necessary
+  if t == 0 || q == one(UnitQuaternion) || q == -one(UnitQuaternion)
     return one(UnitQuaternion)
   end
   return exp(t * log(q))
