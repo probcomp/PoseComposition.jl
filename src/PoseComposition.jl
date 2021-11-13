@@ -2,7 +2,7 @@ module PoseComposition
 
 import Base: @kwdef
 import LinearAlgebra: dot, norm, cross
-import Rotations: AngleAxis, Rotation, UnitQuaternion, RotZYX
+import Rotations: AngleAxis, Rotation, UnitQuaternion, RotZYX, RotMatrix
 import StaticArrays: StaticVector, SVector, @SVector
 
 include("docstring_extensions.jl")
@@ -298,7 +298,7 @@ function quatPow(q::UnitQuaternion, t::Real)
   if t == 0 || q == one(UnitQuaternion) || q == -one(UnitQuaternion)
     return one(UnitQuaternion)
   end
-  return exp(t * log(q))
+  return RotMatrix{3}(exp(t * log(q)))
 end
 
 
