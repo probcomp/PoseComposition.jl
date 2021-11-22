@@ -2,7 +2,7 @@ module PoseComposition
 
 import Base: @kwdef
 import LinearAlgebra: dot, norm, cross
-import Rotations: AngleAxis, Rotation, UnitQuaternion, RotZYX, RotMatrix
+import Rotations: AngleAxis, Rotation, QuatRotation, RotZYX, RotMatrix
 import StaticArrays: StaticVector, SVector, @SVector
 
 include("docstring_extensions.jl")
@@ -55,7 +55,7 @@ end
 """
 The identity quaternion, representing the identity orientation.
 """
-IDENTITY_ORN = UnitQuaternion(1, 0, 0, 0)
+IDENTITY_ORN = one(QuatRotation)
 
 """
 Identity pose, a.k.a. the relative pose of any coordinate frame relative to itself.
@@ -80,7 +80,7 @@ function strWithYPR(pose::Pose)::String
 end
 
 function strWithQuat(pose::Pose)::String
-  q = UnitQuaternion(pose.orientation)
+  q = QuatRotation(pose.orientation)
   "Pose⟨pos=$(pose.pos), orientation=(w=$(q.w), x=$(q.x), y=$(q.y), z=$(q.z))⟩"
 end
 
@@ -90,18 +90,18 @@ function _yawPitchRoll(orn::Rotation{3})
   (yaw=ypr.theta1, pitch=ypr.theta2, roll=ypr.theta3)
 end
 
-componentsWXYZ(q::UnitQuaternion) = @SVector([q.w, q.x, q.y, q.z])
+componentsWXYZ(q::QuatRotation) = @SVector([q.q.s, q.q.v1, q.q.v2, q.q.v3])
 
 """
 Like `isapprox`, but does not consider a quaternion to be equivalent to its
 negative (even though they correspond to the same rotation matrix).  Note that
-this is stricter than `Base.isapprox`, since for a `Rotations.UnitQuaternion`
+this is stricter than `Base.isapprox`, since for a `Rotations.QuatRotation`
 `q`, we have `-q ≈ q` and in fact `-q == q`.
 """
 function isapproxIncludingQuaternionSign(a::Pose, b::Pose; kwargs)::Bool
   (isapprox(a.pos, b.pos; kwargs...) &&
-   isapprox(componentsWXYZ(UnitQuaternion(a.orientation)), 
-            componentsWXYZ(UnitQuaternion(b.orientation));
+   isapprox(componentsWXYZ(QuatRotation(a.orientation)), 
+            componentsWXYZ(QuatRotation(b.orientation));
             kwargs...))
 end
 
@@ -122,7 +122,7 @@ Base.:(\)(a::Pose, b::Pose)::Pose = Pose(
 
 Base.:(^)(pose::Pose, t::Real) = Pose(t * pose.pos,
                                       # quaternion exponentiation = SLERP
-                                      quatPow(UnitQuaternion(pose.orientation),
+                                      quatPow(QuatRotation(pose.orientation),
                                               t))
 
 function Base.inv(a::Pose)::Pose
@@ -276,7 +276,7 @@ independently, as in the [`⊗`](@ref) operation (not the [`*`](@ref
 Base.:*(::Pose, ::Pose)) operation).
 """
 interp(b::Pose, t::Real) = Pose(t * b.pos,
-                                quatPow(UnitQuaternion(b.orientation), t))
+                                quatPow(QuatRotation(b.orientation), t))
 
 """
 Like [`interp`](@ref interp(::Pose, ::Real)), but interpolates between two
@@ -292,11 +292,11 @@ and as a special case, we have
 interp(a::Pose, b::Pose, t::Real) = a * interp(a ⦸ b, t)
 
 
-function quatPow(q::UnitQuaternion, t::Real)
+function quatPow(q::QuatRotation, t::Real)
   # TODO: Once https://github.com/JuliaGeometry/Rotations.jl/issues/126 is
   # fixed, this special case won't be necessary
-  if t == 0 || q == one(UnitQuaternion) || q == -one(UnitQuaternion)
-    return one(UnitQuaternion)
+  if t == 0 || q == one(QuatRotation) || q == -one(QuatRotation)
+    return one(QuatRotation)
   end
   return RotMatrix{3}(exp(t * log(q)))
 end
