@@ -74,7 +74,7 @@ places particular emphasis on:
 Define `p1`, the pose of a batter (relative to some arbitrary world coordinate
 frame) in a game of baseball:
 ```julia
-p1 = Pose([10, 10, 0], UnitQuaternion(1, 0, 0, 0))
+p1 = Pose([10, 10, 0], QuatRotation(1, 0, 0, 0))
 ```
 Define `p1_2`, the relative pose of the baseball in the batter's coordinate
 frame, and compute `p2`, the pose of the baseball in the world coordinate

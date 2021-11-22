@@ -30,7 +30,7 @@ rather than written as function applications on the left.
 
 [^1]:
     In code, elements of ``G`` whose orientation is represented as a
-    `Rotations.UnitQuaternion` (as opposed to some other subtype of
+    `Rotations.QuatRotation` (as opposed to some other subtype of
     `Rotations.Rotation{3}`) remember their sign (`q` and `-q` are considered
     equal by `Base.:==`, but their fields are not equal).
 

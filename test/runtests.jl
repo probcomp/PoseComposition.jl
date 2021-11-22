@@ -1,12 +1,12 @@
 import PoseComposition: Pose, IDENTITY_POSE, IDENTITY_ORN, interp, ⊗, ⊘
-import Rotations: UnitQuaternion, RotZYX
+import Rotations: QuatRotation, RotZYX
 import StaticArrays: SVector, @SVector
 import Test: @test, @testset
 
 @testset "Pose group operations" begin
-  p1 = Pose(1.0, 1.1, 1.2, UnitQuaternion(√(0.1), √(0.2), √(0.3), √(0.4)))
-  p2 = Pose(2.0, 2.1, 2.2, UnitQuaternion(√(0.2), √(0.2), √(0.3), √(0.3)))
-  p3 = Pose(3.0, 3.1, 3.2, UnitQuaternion(√(0.3), √(0.3), √(0.3), √(0.1)))
+  p1 = Pose(1.0, 1.1, 1.2, QuatRotation(√(0.1), √(0.2), √(0.3), √(0.4)))
+  p2 = Pose(2.0, 2.1, 2.2, QuatRotation(√(0.2), √(0.2), √(0.3), √(0.3)))
+  p3 = Pose(3.0, 3.1, 3.2, QuatRotation(√(0.3), √(0.3), √(0.3), √(0.1)))
 
   function testPosesApprox(a, b; kwargs...)
     @test isapprox(a.pos, b.pos; kwargs...)
