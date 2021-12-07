@@ -91,8 +91,8 @@ end
 
 # Regression test for https://github.com/probcomp/PoseComposition.jl/issues/11
 @testset "Can stringify, print and `show` with no crash" begin
-    pose = Pose([1, 2, 3], RotZYX(0.4, 0.5, 0.6))
-    string(pose)
-    print(devnull, pose)
-    show(devnull, "text/plain", pose)
+  pose = Pose([1, 2, 3], RotZYX(0.4, 0.5, 0.6))
+  string(pose)
+  print(devnull, pose)
+  show(devnull, "text/plain", pose)
 end
