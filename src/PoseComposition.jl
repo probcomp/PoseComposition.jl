@@ -81,7 +81,7 @@ end
 
 function strWithQuat(pose::Pose)::String
   q = QuatRotation(pose.orientation)
-  "Pose⟨pos=$(pose.pos), orientation=(w=$(q.w), x=$(q.x), y=$(q.y), z=$(q.z))⟩"
+  "Pose⟨pos=$(pose.pos), orientation=(w=$(q.q.s), x=$(q.q.v1), y=$(q.q.v2), z=$(q.q.v3))⟩"
 end
 
 
