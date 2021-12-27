@@ -1,7 +1,7 @@
 name = "PoseComposition"
 uuid = "0a8ab332-79e8-43e0-a313-949ce1168071"
 authors = ["Ben Zinberg <bzinberg@alum.mit.edu>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
